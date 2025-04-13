@@ -22,6 +22,23 @@
             <a href="https://zotbotics.github.io/"> website </a> or 
             contact <a href=""> zotbotics@gmail.com </a>
         </h2>
+        <script>
+            document.getElementById('auth-form').addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const user_id = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                const response = await fetch('http://localhost:5000/find', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id, password })
+                });
+
+                const result = await response.json();
+                alert(result.message);
+            });
+        </script>
     </body> 
     </div>
 </html>
